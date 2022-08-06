@@ -178,8 +178,20 @@ const getProducts = async (req, res, next) => {
     if (req?.query?.category) return getAllProductsByCategory(req, res);
     if (req?.query?.sort) return getAllProductsByPriceSort(req, res);
     if (req?.query?.all) return getAllProducts(req,res)
+    if(req?.query?.id) return getProductById(req,res)
   
 };
+
+const getProductById = async(req,res,next) =>{
+  try {
+    let { query } = req;
+    let { id } = query;
+    let data = await Product.findById(id).lean().then(product=>productResposeModifier(product))
+    return successResponse(res, data);
+  }catch(e){
+    failedResponse(res,e.toString())
+  }
+}
 
 const ProductController = {
   addNewProduct,

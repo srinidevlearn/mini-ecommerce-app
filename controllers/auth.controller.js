@@ -32,7 +32,7 @@ const login = async (req, res) => {
     if (!data) {
       throw new Error("Login failed,Please try with correct email/password");
     }
-    return successResponse(res, "Logged in successfully");
+    return successResponse(res, {userId:data.id.toString(),message:'Logged in succesfully'});
   } catch (e) {
     return failedResponse(res, e.toString());
   }
