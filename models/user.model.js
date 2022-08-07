@@ -12,6 +12,7 @@ let UserSchema = new Schema(
     email: { type: String },
     username: { type: String },
     password: { type: String },
+    role:{type:Array},
     phone: { type: String },
     address: {
       city: { type: String },
