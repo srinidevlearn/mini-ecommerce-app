@@ -6,12 +6,13 @@ const router = require("./routes/index.router");
 const bodyParser = require("body-parser");
 const { mongoose } = require("./config/db.config");
 const RESPONSE_STATUS = require("./util/res.constant");
+const cors = require('cors')
 
 const app = express();
 
 
 app.use(logger("combined"));
-
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
