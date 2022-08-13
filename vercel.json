@@ -14,15 +14,15 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "./bin/www"
+      "dest": "./bin/www",
+      "method":[
+        "GET",
+        "PUT","POST","DELETE"
+      ]
     },
     {
       "src": "/",
-      "dest": "ui/build/index.html"
-    },
-    {
-      "src": "/(.+)",
-      "dest": "ui/build/$1"
+      "dest": "./public/index.html"
     }
   ]
 }
