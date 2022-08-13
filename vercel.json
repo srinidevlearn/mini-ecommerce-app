@@ -14,11 +14,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "./bin/www",
-      "method":[
-        "GET",
-        "PUT","POST","DELETE"
-      ]
+      "dest": "./bin/www"
     },
     {
       "src": "/",
