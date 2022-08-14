@@ -5,6 +5,7 @@ const usersRouter = require('./user.router');
 const authRouter = require('./auth.router');
 const productRouter = require('./product.router');
 const cartRouter = require('./cart.router');
+const { authenticateJWT } = require('../config/jwt.helper');
 
 
 /* GET home page. */
@@ -15,10 +16,19 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.use('/user', usersRouter);
+// without jwtTokenValidate
+
+// router.use('/user', usersRouter);
+// router.use('/auth', authRouter);
+// router.use('/product', productRouter);
+// router.use('/cart', cartRouter);
+
+// with jwt token validate
+router.use('/user',authenticateJWT, usersRouter);
 router.use('/auth', authRouter);
-router.use('/product', productRouter);
-router.use('/cart', cartRouter);
+router.use('/product',authenticateJWT, productRouter);
+router.use('/cart', authenticateJWT,cartRouter);
+
 
 
 

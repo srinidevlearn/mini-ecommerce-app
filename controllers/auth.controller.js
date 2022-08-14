@@ -1,6 +1,7 @@
 const RESPONSE_STATUS = require("../util/res.constant");
 const Auth = require("../models/user.model");
 const { failedResponse, successResponse } = require("../util/response.helper");
+const { sendJwtToken } = require("../config/jwt.helper");
 
 const register = async (req, res) => {
   try {
@@ -26,13 +27,12 @@ const login = async (req, res) => {
     let { email, password } = body;
     if(!email) throw new Error("Email is missing");
     if(!password) throw new Error("Password is missing");
-    const data = await Auth.findOne({ email, password }).then((res) =>
-      res.toJSON()
-    );
+    const data = await Auth.findOne({ email, password }).lean();
     if (!data) {
       throw new Error("Login failed,Please try with correct email/password");
     }
-    return successResponse(res, {user:data,userId:data.id.toString(),message:'Logged in succesfully'});
+    let user = {user:data,userId:data._id.toString()}
+    return successResponse(res, {token:sendJwtToken(user),message:'Logged in succesfully'});
   } catch (e) {
     return failedResponse(res, e.toString());
   }
