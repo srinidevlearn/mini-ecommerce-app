@@ -10,7 +10,6 @@ const Products = require("../models/product.model");
 const { getProductByIds } = require("./product.controller");
 
 addNewItemToCart = async (req, res) => {
-  console.log(req.body)
   try {
     let { body } = req;
     let { userId, productId, quantity } = body;

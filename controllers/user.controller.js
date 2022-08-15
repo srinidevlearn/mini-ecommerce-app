@@ -19,10 +19,8 @@ const getUser = async (req, res) => {
 const getAllUsers = async (req, res) => {
   try {
     let data = await User.find({})
-      // .select("password")
       .select("address name email phone username")
       .then((res) => {
-        console.log(res)
         return res;
       });
     return successResponse(res, data);

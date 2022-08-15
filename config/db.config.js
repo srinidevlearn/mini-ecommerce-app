@@ -11,7 +11,6 @@ mongoose
     console.log("Db Connected successfully");
   })
   .catch((err) => {
-    console.log(err)
     mongoose.disconnect();
   });
 // mongoose.set('useCreateIndex', true);

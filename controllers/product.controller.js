@@ -71,7 +71,6 @@ const getProductCategories = async (req, res, next) => {
 
 const getAllProductsByCategory = async (req, res, next) => {
   let { query } = req;
-  console.log(query);
   let { category, sort } = query;
   let data = await Product.find({ category })
     .lean()
@@ -131,7 +130,6 @@ const getAllProductsByCategoryAndSort = async (req, res, next) => {
 };
 
 const getAllProducts = async (req, res, next) => {
-  console.log(req.user);
   let data = await Product.find()
     .lean()
     .then((res) => {
