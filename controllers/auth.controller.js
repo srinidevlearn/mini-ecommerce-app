@@ -31,6 +31,8 @@ const login = async (req, res) => {
     if (!data) {
       throw new Error("Login failed,Please try with correct email/password");
     }
+    if(data.password) delete data.password;
+    console.log(data)
     let user = {user:data,userId:data._id.toString()}
     return successResponse(res, {token:sendJwtToken(user),message:'Logged in succesfully'});
   } catch (e) {

@@ -40,7 +40,7 @@ module.exports = app;
 function myLoggerService(tokens, req, res) {
   var source = req.headers["user-agent"];
    var ua = useragent.parse(source);
-   console.log(ua)
+  
   let temp = {
     method: tokens.method(req, res),
     url: tokens.url(req, res),
@@ -51,7 +51,7 @@ function myLoggerService(tokens, req, res) {
     referrer: tokens.referrer(req, res),
     userAgent: ua,
   };
-
+console.log(temp)
   logs.create(temp);
   return temp;
 }
